@@ -1,6 +1,6 @@
 package software.ulpgc;
 
-public class Grades  {
+public record Grades(String num_Estudiante, String calificacion, String asignatura)  {
     /* kata2
     private final int Num_Estudiante;
     private final String Calificacion;
