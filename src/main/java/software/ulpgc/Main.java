@@ -16,5 +16,19 @@ public class Main {
         }
     }
      */
+    public static void main(String[] args) {
+        try (Connection connection = DriverManager.getConnection(urlOf("grades.db"))) {
+            SqliteGradesLoader sqliteGradesLoader = new SqliteGradesLoader(connection);
+            List<Grades> grades = sqliteGradesLoader.loadAdd();
+            for (Grades grade : grades) {
+                System.out.println(grade);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    private static String urlOf(String filename) {
+        return "jdbc:sqlite:" + filename;
+    }
 }
